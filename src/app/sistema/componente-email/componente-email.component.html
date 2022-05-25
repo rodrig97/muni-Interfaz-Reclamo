@@ -1,0 +1,41 @@
+<div class="modal-header" style="background: rgb(232, 231, 231)">
+    <h6 class="modal-title" id="modal-basic-title">NOTIFICAR OBSERVACION AL CORREO ELECTRONICO</h6>
+    
+</div>
+
+<form [formGroup]="FormReclamLibro" class="user ng-pristine ng-invalid ng-touched" novalidate="">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label for="email">Para: </label>
+            <span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i aria-hidden="true" class="fas fa-at"></i>
+                        </span>
+                    </div>
+                    <input class="form-control ng-pristine ng-invalid ng-touched" [value]="data.email" name="email" type="email" readonly="">
+                </div>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12"><label for="motivo">Motivo:</label>
+            <span class="required">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i aria-hidden="true" class="far fa-sticky-note"></i>
+                        </span>
+                    </div>
+                    <textarea class="form-control ng-untouched ng-pristine ng-invalid" formControlName="motivo" id="motivo" placeholder="Ingrese el motivo aquí" rows="4"></textarea>
+                    <!---->
+                </div>
+            </span>
+        </div>
+    </div>
+</form>
+<div class="modal-footer">
+    
+    <button class="btn btn-success" ngbautofocus="" (click)="sendMail()" mat-dialog-close="" type="button">Enviar
+    </button>
+    <!--(click)="sendMailCustom()"-->
+</div>

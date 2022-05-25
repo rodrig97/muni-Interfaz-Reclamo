@@ -1,0 +1,396 @@
+<link rel="icon" type="image/x-icon" href="../../../../muni.ico">
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3" align="center">
+          <img
+            class="mpilo_logo"
+            src="assets/img/mpilo_logo.png"
+            weight="93"
+            height="93"
+            alt="mpilo_logo"
+          />
+        </div>
+        
+        
+        <div class="flex align-items-center justify-content-between" align="center">
+          <h5 class="m-0 text-uppercase text-primary">
+            <b>LIBRO DE RECLAMACIONES ELECTRÓNICO</b>
+          </h5>
+        </div>
+        <div class="col-md-12">
+          <div class="card-body">
+            <div class="row"></div>
+            <hr />
+            <form
+              [formGroup]="FormReclamLibro"
+              class="user ng-invalid ng-touched ng-dirty"
+            >
+              <div class="row">
+                <div
+                  class="alert alert-primary font-weight-bold text-primary col-lg-12"
+                >
+                  1. IDENTIFICACIÓN DE USUARIO
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-4">
+                  <label for="tipo_doc">Tipo de Documento</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="fas fa-address-book"></i
+                      ></span>
+                    </div>
+                    <select
+                      class="form-control ng-pristine ng-valid ng-touched"
+                      formControlName="tipo_doc"
+                      name="tipo_doc"
+                      (change)="clear()"
+                    >
+                      <!--<i class="fa fa-address-card" aria-hidden="true"></i>-->
+                      <option value="0" id="natural">PERSONA NATURAL</option>
+                      <option value="1" id="juridica">PERSONA JURÍDICA</option>
+                    </select>
+                  </div>
+                </div>
+                <!---->
+                <div class="form-group col-lg-4">
+                  <div class="col-xs-2">
+                    <label for="ndoc">Número de DNI/RUC: </label
+                    ><span class="required">*</span>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i
+                            aria-hidden="true"
+                            class="fas fa-sort-numeric-up"
+                          ></i
+                        ></span>
+                      </div>
+                      <input
+                        [ngClass]="{
+                          'form-control form-control': true,
+                          'is-invalid':
+                            submitted && FormReclamLibro.get('ndoc')?.invalid
+                        }"
+                        formControlName="ndoc"
+                        (input)="searchDni()"
+                        (input)="searchRuc()"
+                        maxlength="11"
+                        size="1"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!---->
+                <div class="form-group col-lg-4">
+                  <div class="col-xs-2">
+                    <label
+                      for="ndoc"
+                      style="font-size: 11pt; margin-bottom: 0.6rem"
+                      >Número Verifica DNI: </label
+                    ><span style="cursor: pointer"
+                      >&nbsp;<i
+                        aria-hidden="true"
+                        class="fas fa-question-circle"
+                        
+                      ></i
+                    ></span>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i
+                            aria-hidden="true"
+                            class="fas fa-sort-numeric-up"
+                          ></i
+                        ></span>
+                      </div>
+                      <input
+                        [ngClass]="{
+                          'form-control form-control': true,
+                          'is-invalid':
+                            submitted &&
+                            FormReclamLibro.get('nroVerifDNI')?.invalid
+                        }"
+                        formControlName="nroVerifDNI"
+                        (input)="searchDni()"
+                        maxlength="1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!---->
+                <!---->
+              </div>
+              <!---->
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="ape_nom">Nombres: </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="fa fa-users"></i
+                      ></span>
+                    </div>
+                    <input
+                      formControlName="nombres"
+                      class="form-control ng-pristine ng-invalid ng-touched"
+                      readonly=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="ape_nom">Apellido Paterno: </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="fa fa-users"></i
+                      ></span>
+                    </div>
+                    <input
+                      formControlName="apPaterno"
+                      class="form-control ng-pristine ng-invalid ng-touched"
+                      readonly=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="ape_nom">Apellido Materno: </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="fa fa-users"></i
+                      ></span>
+                    </div>
+                    <input
+                      formControlName="apMaterno"
+                      class="form-control ng-pristine ng-invalid ng-touched"
+                      readonly=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-4">
+                  <label for="phone">Celular:</label
+                  ><span class="required">*</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="fas fa-mobile-alt"></i
+                      ></span>
+                    </div>
+                    <input
+                      appnumberonly=""
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted && FormReclamLibro.get('phone')?.invalid
+                      }"
+                      formControlName="phone"
+                      maxlength="15"
+                      placeholder="Ingrese un numero celular"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="form-group col-lg-8">
+                  <label for="email">Email: </label
+                  ><span class="required">*</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="fas fa-at"></i
+                      ></span>
+                    </div>
+                    <input
+                      class="form-control ng-pristine ng-invalid ng-touched"
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted && FormReclamLibro.get('email')?.invalid
+                      }"
+                      formControlName="email"
+                      maxlength="40"
+                      placeholder="Ingrese un correo electronico"
+                      type="email"
+                      required
+                    />
+                    <!---->
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class="alert alert-primary font-weight-bold text-primary col-lg-12"
+                >
+                  2. IDENTIFICACIÓN DE LA ATENCIÓN BRINDADA
+                </div>
+              </div>
+              <div class="row">
+                <!--<div class="form-group col-lg-4">
+                  <label for="tipo_documento">Tipo de documento</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="far fa-sticky-note"></i
+                      ></span>
+                    </div>
+                    <select
+                      class="form-control ng-pristine ng-valid ng-touched"
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted &&
+                          FormReclamLibro.get('tipo_documento')?.invalid
+                      }"
+                      formControlName="tipo_documento"
+                     
+                    >
+                      ESTO HAY Q EVALUAR Y DEFINIR o hacer una tabla llamado tipo documento
+                      <option value="1">OFICIO</option>
+                      <option value="5">CARTA</option>
+                      <option value="6">SOLICITUD-OTROS</option>
+                    </select>
+                  </div>
+                </div>-->
+                <!--<div class="form-group col-lg-4">
+                  <label for="ndocumento">Nro de documento </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i
+                          aria-hidden="true"
+                          class="fas fa-sort-numeric-up"
+                        ></i
+                      ></span>
+                    </div>
+                    <input
+                      appnumberonly=""
+                      class="form-control ng-untouched ng-pristine ng-invalid"
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted && FormReclamLibro.get('ndocumento')?.invalid
+                      }"
+                      formControlName="ndocumento"
+                      maxlength="15"
+                      
+                    />
+                  </div>
+                </div>-->
+                <!--<div class="form-group col-lg-4">
+                  <label for="folio">Nro total de Folios</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i
+                          aria-hidden="true"
+                          class="fas fa-sort-numeric-up"
+                        ></i
+                      ></span>
+                    </div>
+                    <input
+                      appnumberonly=""
+                      class="form-control ng-untouched ng-pristine ng-invalid"
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted && FormReclamLibro.get('folio')?.invalid
+                      }"
+                      formControlName="folio"
+                      maxlength="4"
+                      
+                    />
+                  </div>
+                </div>-->
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="descripcion">Descripción: </label
+                  ><span class="required">*</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="far fa-sticky-note"></i
+                      ></span>
+                    </div>
+                    <textarea
+                      class="form-control ng-pristine ng-invalid ng-touched"
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted && FormReclamLibro.get('descripcion')?.invalid
+                      }"
+                      formControlName="descripcion"
+                      placeholder="Ingrese la descripcion del documento"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class="alert alert-primary font-weight-bold text-primary col-lg-12"
+                >
+                  3. DETALLE DE LA RECLAMACIÓN
+                </div>
+              </div>
+              <!---->
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <label for="detalle">Detalle: (opcional)</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i aria-hidden="true" class="far fa-sticky-note"></i
+                      ></span>
+                    </div>
+                    <textarea
+                      class="form-control ng-pristine ng-invalid ng-touched"
+                      [ngClass]="{
+                        'form-control form-control': true,
+                        'is-invalid':
+                          submitted && FormReclamLibro.get('detalle')?.invalid
+                      }"
+                      formControlName="detalle"
+                      placeholder="Ingrese detalles"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <!---->
+              <hr />
+              <div class="advertencia" align="left">
+                *Campos obligatorios.
+              </div>
+              <div align="right">
+                <a>
+                    <button
+                        (click)="PresentarReclamo()"
+                        class="btn btn-success"
+                        ngbautofocus=""
+                        type="submit">
+                        <i aria-hidden="true" class="fas fa-address-book"></i>
+                        Enviar Reclamo
+                    </button>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

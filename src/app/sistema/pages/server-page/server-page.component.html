@@ -1,0 +1,305 @@
+<img
+  src="../../../../assets/img/mpilo_logo.png"
+  alt=""
+  weight="90px"
+  height="90px"
+  class="img1"
+/>
+<hr />
+<mat-card class="table-card">
+  <p-toolbar>
+    <ng-template pTemplate="left">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0 text-uppercase text-primary">
+          <b>Listado de Reclamos</b>
+        </h5>
+      </div>
+    </ng-template>
+  </p-toolbar>
+  <mat-tab-group>
+    <mat-tab label="Nuevos">   <p-table
+      #dt
+      [columns]="cols"
+      [value]="dataRec"
+      responsiveLayout="scroll"
+      [exportHeader]="'customExportHeader'"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando registros del {first} al {last} de un total de {totalRecords} registros"
+      [rowsPerPageOptions]="[10, 15, 20]"
+      class="p-table"
+      (onLazyLoad)="loadCustomers($event)"
+      [loading]="loading"
+    >
+    <!--[lazy]="true"-->
+      <ng-template pTemplate="caption">
+         <!--<p-toolbar>
+          <ng-template pTemplate="left">
+            <div class="flex align-items-center justify-content-between">
+              <h5 class="m-0 text-uppercase text-primary">
+                <b>Listado de Reclamos</b>
+              </h5>
+            </div>
+          </ng-template>
+  
+          <ng-template pTemplate="right">
+            <p-button
+              icon="pi pi-check"
+              (click)="loadCustomers($any($event))"
+              class="p-button-rounded p-button-info"
+              pTooltip="Refrescar"
+              tooltipPosition="top"
+              [loading]="loadingRefresh[0]"
+              (onClick)="load(0)"
+            ></p-button>
+          </ng-template>
+          
+        </p-toolbar>-->
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Buscar"
+            />
+          </span>
+          
+        </div>
+        
+      </ng-template>
+      <!-------------------------------------------------------------------------------------------------------------------->
+  
+      <ng-template pTemplate="header" let-columns>
+        
+        <tr>
+          <!--pSortableColumn="{{ col.header }}"-->
+          <!-- <p-sortIcon field="code" ></p-sortIcon>-->
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+       
+      </ng-template>
+      
+  
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        
+        <tr>
+          <td *ngFor="let col of columns">
+            <div *ngIf="col.type == 'text'">
+              {{ rowData[col.field] }}
+            </div>
+            <div *ngIf="col.type == 'date'">
+              {{ rowData[col.field] | date: "mediumDate" }}
+            </div>
+  
+            <!--BOTONES-->
+            <div class="btn-group" *ngIf="col.type == 'accion'">
+              <button
+                class="btn btn-sm btn-info view_reclamo btn-circle"
+                (click)="InfoDialog(rowData)"
+              ><i class="fas fa-info-circle"></i>
+              </button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                (click)="reclamoPdf(rowData)"
+                icon="pi pi-file-pdf"
+                class="p-button-warning mr-2"
+                pTooltip="PDF"
+                tooltipPosition="botton">
+              </button>
+              <button class="btn btn-sm btn-danger receive btn-circle" (click)="sisgDialog(rowData)">
+                <i class="fas fa-file-import"></i></button>
+          <!--    <button class="btn btn-sm btn-primary view_send_mail btn-circle" (click)="emailDialog(rowData)">
+                  <i class="far fa-envelope"></i></button>
+                  -->
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+  
+      <!--------------------------------------------------------------------------------------------------------------->
+    </p-table> </mat-tab>
+    <mat-tab label="Derivados">   <p-table
+      #dt
+      [columns]="cols"
+      [value]="dataDer"
+      responsiveLayout="scroll"
+      [exportHeader]="'customExportHeader'"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando registros del {first} al {last} de un total de {totalRecords} registros"
+      [rowsPerPageOptions]="[10, 15, 20]"
+      class="p-table"
+      (onLazyLoad)="loadCustomers($event)"
+      [loading]="loading"
+    >
+    <!--[lazy]="true"-->
+      <ng-template pTemplate="caption">
+       
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Buscar"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <!-------------------------------------------------------------------------------------------------------------------->
+  
+      <ng-template pTemplate="header" let-columns>
+        
+        <tr>
+          <!--pSortableColumn="{{ col.header }}"-->
+          <!-- <p-sortIcon field="code" ></p-sortIcon>-->
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+       
+      </ng-template>
+      
+  
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        
+        <tr>
+          <td *ngFor="let col of columns">
+            <div *ngIf="col.type == 'text'">
+              {{ rowData[col.field] }}
+            </div>
+            <div *ngIf="col.type == 'date'">
+              {{ rowData[col.field] | date: "mediumDate" }}
+            </div>
+  
+            <!--BOTONES-->
+            <div class="btn-group" *ngIf="col.type == 'accion'">
+              <button
+                class="btn btn-sm btn-info view_reclamo btn-circle"
+                (click)="InfoDialog(rowData)"
+              ><i class="fas fa-info-circle"></i>
+              </button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                (click)="reclamoPdf(rowData)"
+                icon="pi pi-file-pdf"
+                class="p-button-warning mr-2"
+                pTooltip="PDF"
+                tooltipPosition="botton">
+              </button>
+            
+              <button class="btn btn-sm btn-primary view_send_mail btn-circle" (click)="emailDialog(rowData)">
+                  <i class="far fa-envelope"></i></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+  
+      <!--------------------------------------------------------------------------------------------------------------->
+    </p-table>
+  </mat-tab>
+    <mat-tab label="Reclamos completados">
+      <p-table
+      #dt
+      [columns]="cols"
+      [value]="dataEmail"
+      responsiveLayout="scroll"
+      [exportHeader]="'customExportHeader'"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando registros del {first} al {last} de un total de {totalRecords} registros"
+      [rowsPerPageOptions]="[10, 15, 20]"
+      class="p-table"
+      (onLazyLoad)="loadCustomers($event)"
+      [loading]="loading"
+    >
+    <!--[lazy]="true"-->
+      <ng-template pTemplate="caption">
+       
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Buscar"
+            />
+          </span>
+          
+        </div>
+        
+      </ng-template>
+      <!-------------------------------------------------------------------------------------------------------------------->
+  
+      <ng-template pTemplate="header" let-columns>
+        
+        <tr>
+          <!--pSortableColumn="{{ col.header }}"-->
+          <!-- <p-sortIcon field="code" ></p-sortIcon>-->
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+       
+      </ng-template>
+      
+  
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        
+        <tr>
+          <td *ngFor="let col of columns">
+            <div *ngIf="col.type == 'text'">
+              {{ rowData[col.field] }}
+            </div>
+            <div *ngIf="col.type == 'date'">
+              {{ rowData[col.field] | date: "mediumDate" }}
+            </div>
+  
+            <!--BOTONES-->
+            <div class="btn-group" *ngIf="col.type == 'accion'">
+              <button
+                class="btn btn-sm btn-info view_reclamo btn-circle"
+                (click)="InfoDialog(rowData)"
+              ><i class="fas fa-info-circle"></i>
+              </button>
+              <button
+                type="button"
+                pButton
+                pRipple
+                (click)="reclamoPdf(rowData)"
+                icon="pi pi-file-pdf"
+                class="p-button-warning mr-2"
+                pTooltip="PDF"
+                tooltipPosition="botton">
+              </button>
+              
+              <button class="btn btn-sm btn-primary view_send_mail btn-circle" (click)="emailDialog(rowData)">
+                  <i class="far fa-envelope"></i></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+  
+      <!--------------------------------------------------------------------------------------------------------------->
+    </p-table>
+  </mat-tab>
+  </mat-tab-group>
+  
+
+</mat-card>
+<footer class="footer" align="center">
+  Copyright © Sub Gerencia de Informatica - MPI
+</footer>
