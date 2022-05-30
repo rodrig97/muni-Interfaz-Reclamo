@@ -8,6 +8,7 @@ export const FormReclamLibro: any = new FormGroup({
     nombres: new FormControl('', Validators.required),
     apPaterno: new FormControl('', Validators.required),
     apMaterno: new FormControl('', Validators.required),
+    edad: new FormControl(''),
     ndoc: new FormControl('', Validators.required),
     nroVerifDNI: new FormControl(''),
     phone:  new FormControl('', Validators.required),

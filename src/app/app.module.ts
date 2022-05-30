@@ -28,7 +28,7 @@ import * as pdfMake from 'pdfmake/build/pdfmake';
 import { MatTabsModule } from '@angular/material/tabs';
 
 
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -57,7 +57,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MaterialModule,
     ToolbarModule,
     PdfViewerModule,
-    MatTabsModule
+    MatTabsModule,
+    NgbModule
     
     //pdfMake
   ],

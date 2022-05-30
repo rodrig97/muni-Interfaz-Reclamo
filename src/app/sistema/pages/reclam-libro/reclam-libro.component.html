@@ -1,4 +1,4 @@
-<link rel="icon" type="image/x-icon" href="../../../../muni.ico">
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -13,11 +13,12 @@
             alt="mpilo_logo"
           />
         </div>
-        
-        
-        <div class="flex align-items-center justify-content-between" align="center">
+        <div
+          class="flex align-items-center justify-content-between"
+          align="center"
+        >
           <h5 class="m-0 text-uppercase text-primary">
-            <b>LIBRO DE RECLAMACIONES ELECTRÓNICO</b>
+            <b class="tituloRec">LIBRO DE RECLAMACIONES ELECTRÓNICO</b>
           </h5>
         </div>
         <div class="col-md-12">
@@ -36,7 +37,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-3">
                   <label for="tipo_doc">Tipo de Documento</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -57,7 +58,7 @@
                   </div>
                 </div>
                 <!---->
-                <div class="form-group col-lg-4">
+                <div class="form-group col-lg-3">
                   <div class="col-xs-2">
                     <label for="ndoc">Número de DNI/RUC: </label
                     ><span class="required">*</span>
@@ -87,7 +88,9 @@
                   </div>
                 </div>
                 <!---->
-                <div class="form-group col-lg-4">
+
+                <!---->
+                <div class="form-group col-lg-3">
                   <div class="col-xs-2">
                     <label
                       for="ndoc"
@@ -97,8 +100,7 @@
                       >&nbsp;<i
                         aria-hidden="true"
                         class="fas fa-question-circle"
-                        
-                      ></i
+                        (click)="firstDialog()"></i
                     ></span>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -124,6 +126,32 @@
                   </div>
                 </div>
                 <!---->
+                <div class="form-group col-lg-3 col-lg-offset-4">
+                  <div class="col-xs-2">
+                    <label for="edad">Edad: </label
+                    ><span class="required"></span>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i
+                            aria-hidden="true"
+                            class="fas fa-sort-numeric-up"
+                          ></i
+                        ></span>
+                      </div>
+                      <input
+                        [ngClass]="{
+                          'form-control form-control': true,
+                          'is-invalid':
+                            submitted && FormReclamLibro.get('edad')?.invalid
+                        }"
+                        formControlName="edad"
+                        maxlength="2"
+                      />
+                    </div>
+                  </div>
+                </div>
+               
                 <!---->
               </div>
               <!---->
@@ -328,7 +356,8 @@
                       [ngClass]="{
                         'form-control form-control': true,
                         'is-invalid':
-                          submitted && FormReclamLibro.get('descripcion')?.invalid
+                          submitted &&
+                          FormReclamLibro.get('descripcion')?.invalid
                       }"
                       formControlName="descripcion"
                       placeholder="Ingrese la descripcion del documento"
@@ -371,19 +400,18 @@
               </div>
               <!---->
               <hr />
-              <div class="advertencia" align="left">
-                *Campos obligatorios.
-              </div>
+              <div class="advertencia" align="left">*Campos obligatorios.</div>
               <div align="right">
                 <a>
-                    <button
-                        (click)="PresentarReclamo()"
-                        class="btn btn-success"
-                        ngbautofocus=""
-                        type="submit">
-                        <i aria-hidden="true" class="fas fa-address-book"></i>
-                        Enviar Reclamo
-                    </button>
+                  <button
+                    (click)="PresentarReclamo()"
+                    class="btn btn-success"
+                    ngbautofocus=""
+                    type="submit"
+                  >
+                    <i aria-hidden="true" class="fas fa-address-book"></i>
+                    Enviar Reclamo
+                  </button>
                 </a>
               </div>
             </form>
@@ -394,3 +422,76 @@
     <div class="col-md-2"></div>
   </div>
 </div>
+
+<!--
+  <ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+           </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+-->
+<!-----------------------------------------------Informacion------------------------------------------------------------->
+<ng-template #content let-modal>
+  <div class="modal-content">
+    <div _ngcontent-qlt-c3="" class="modal-header">
+      <h6 _ngcontent-qlt-c3="" class="modal-title" id="modal-basic-title">LIBRO DE RECLAMACIONES VIRTUAL DEL DESPACHO PRESIDENCIAL</h6>
+    </div>
+    <div _ngcontent-qlt-c3="" class="modal-body text-center">
+      <div _ngcontent-qlt-c3="" class="row">
+        <div _ngcontent-qlt-c3="" class="col-12 col-lg-5 p-0" style="display: grid; place-items: center;">
+          <img _ngcontent-qlt-c3="" src="../../../../assets/img/secretaria1.jpg" width="300" height="220">
+        </div><div _ngcontent-qlt-c3="" class="col-12 col-lg-7">
+          <ul _ngcontent-qlt-c3="" class="list-group list-group-flush">
+            <li _ngcontent-qlt-c3="" class="list-group-item text-justify p-2">
+              <p _ngcontent-qlt-c3="" class="font-weight-bold m-0 text-center">Solicitante</p>
+            </li>
+            <li _ngcontent-qlt-c3="" class="list-group-item text-justify">
+              <span _ngcontent-qlt-c3="" class="badge badge-success badge-pill pill-list">
+                <i _ngcontent-qlt-c3="" class="fas fa-check"></i>
+              </span>
+              <span _ngcontent-qlt-c3="" class="list-padleft">Ponemos a su disposición el presente aplicativo, a través del cual podrá expresar su INSATISFACCIÓN O DISCONFORMIDAD RESPECTO DE LA ATENCIÓN RECIBIDA EN EL DESPACHO PRESIDENCIAL en el ejercicio de su función administrativa (regulada por el Decreto Supremo N° 042-2011-PCM).
+                
+                Le informamos que, una vez ingresado el reclamo, el plazo de tramitación del mismo es de 30 días hábiles, según lo dispone el artículo 4º del Decreto Supremo N° 042-2011-PCM.
+                
+                En caso usted haya iniciado un procedimiento ante el Despacho Presidencial y éste se encuentre paralizado, o hay incumplimiento de los plazos legalmente establecidos, ELLO NO CONSTITUYE UN RECLAMO y corresponde según lo establece la Ley 27444 "Ley del Procedimiento Administrativo General", presentar una QUEJA por defecto de tramitación, ante nuestra Mesa de Partes.</span>
+            </li>
+            <li _ngcontent-qlt-c3="" class="list-group-item text-justify">
+              <span _ngcontent-qlt-c3="" class="badge badge-success badge-pill pill-list">
+                <i _ngcontent-qlt-c3="" class="fas fa-check"></i>
+              </span>
+              <span _ngcontent-qlt-c3="" class="list-padleft">Para iniciar su trámite virtual deberá digitar su numero de DNI y numero de verificacion DNI en caso de ser persona natural, en caso de ser persona juridica debera ingresar su numero de RUC. Asi mismo debera registrar su correo electrónico y celular de manera veraz, ya que la entidad envía respuestas a través del correo electrónico.</span>
+            </li>
+            <li _ngcontent-qlt-c3="" class="list-group-item text-justify">
+              <span _ngcontent-qlt-c3="" class="badge badge-success badge-pill pill-list">
+                <i _ngcontent-qlt-c3="" class="fas fa-check"></i>
+              </span>
+              <span _ngcontent-qlt-c3="" class="list-padleft">Todo trámite deber ser realizado a nombre de la persona que firma el documento, caso contrario no se procederá con la recepción del trámite generado.</span>
+            </li>
+            <li _ngcontent-qlt-c3="" class="list-group-item text-justify">
+              <span _ngcontent-qlt-c3="" class="badge badge-success badge-pill pill-list">
+                <i _ngcontent-qlt-c3="" class="fas fa-check"></i>
+              </span>
+              <span _ngcontent-qlt-c3="" class="list-padleft">Se enviará al solicitante un correo electrónico de confirmación por la recepción del tramite en el que se le informara el número de expediente generado.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </div>
+</ng-template>
