@@ -35,8 +35,17 @@ export class ComponentePdfComponent implements OnInit {
   ngOnInit(): void {}
 
 pipe = new DatePipe('en-US');
+
   createPdf() {
-    const fecha =  this.pipe.transform((new Date(this.data.created_at)), 'dd/MM/yyyy');
+    let texto:any = '';
+    const fechaCreado =  this.pipe.transform((new Date(this.data.created_at)), 'dd/MM/yyyy H:m:s');
+    const fechaRevisado =  this.pipe.transform((new Date(this.data.updated_at)), 'dd/MM/yyyy H:m:s');
+    if (this.data.updated_at !== null){
+      texto = { text: 'Recepcionado: ' + fechaRevisado, alignment: 'right', fontSize: 11};
+    }
+    else{
+      texto = '';
+    }
     const pdfDefinition: any = {
       content: [
         /*{ image: 'mpilo_logo/png;base64,...encodedContent...',
@@ -45,7 +54,9 @@ pipe = new DatePipe('en-US');
         },*/
 
         // {{ this.data.created_at | date }}
-        { text: 'Hoja de reclamo N° 000000' + this.data.id + ' - ' + fecha, alignment: 'left', fontSize: 11 }, 
+        { text: 'Hoja de reclamo N° 000000' + this.data.id + ' - ' + 'Creado: ' + fechaCreado, alignment: 'left', fontSize: 11 },
+        texto,
+        //{ text: 'Recepcionado: ' + fechaRevisado, alignment: 'right', fontSize: 11},
         { text: 'Municipalidad Provincial de ILO', bold: true, style: 'header', fontSize: 19, alignment: 'center' },
         { text: 'Libro de reclamos', style: 'subheader', fontSize: 16, alignment: 'left' },
         {
