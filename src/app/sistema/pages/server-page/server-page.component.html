@@ -56,6 +56,21 @@
           </ng-template>
           
         </p-toolbar>-->
+        <p-toolbar>
+          <ng-template pTemplate="left">
+          </ng-template>
+          <ng-template pTemplate="right">
+            <p-button
+              icon="pi pi-refresh"
+              (click)="loadCustomers($any($event))"
+              class="p-button-rounded p-button-info"
+              pTooltip="Refrescar"
+              tooltipPosition="top"
+              [loading]="loadingRefresh[0]"
+              (onClick)="load(0)"
+            ></p-button>
+          </ng-template>
+        </p-toolbar>
         <div class="flex">
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
